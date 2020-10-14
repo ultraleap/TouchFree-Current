@@ -1,0 +1,11 @@
+Hide DELETEME watermark
+Disable DELETEME ScreenControl
+
+PushCursorID -1
+PokeCursorID -1
+GrabCursorID -1
+HoverCursorID -1
+
+Cursor Window Size 256
+
+Quality 0/1/2/3
