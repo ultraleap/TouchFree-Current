@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2213489624516412114}
   - component: {fileID: 7828356017238222389}
+  - component: {fileID: 2383233282598257216}
   m_Layer: 0
   m_Name: ScreenControlClient
   m_TagString: Untagged
@@ -47,6 +48,21 @@ MonoBehaviour:
   connectionType: 0
   iPAddress: 127.0.0.1
   port: 9739
+--- !u!114 &2383233282598257216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2213489624516412116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ac30281ed369894eb051bfa7bc79163, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputModule: {fileID: 0}
+  eventSystem: {fileID: 0}
+  isHovering: 0
 --- !u!1 &3621950664038563983
 GameObject:
   m_ObjectHideFlags: 0
