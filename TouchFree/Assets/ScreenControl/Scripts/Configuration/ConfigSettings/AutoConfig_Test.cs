@@ -127,7 +127,7 @@ public class AutoConfig_Test : MonoBehaviour
 
     public void PlaceLeapBottom()
     {
-        ConfigurationSetupController.selectedMountType = MountingType.BOTTOM;
+        ConfigurationSetupController.selectedMountType = MountingType.DESKTOP;
 
         leap.position = screen.TransformPoint(Random.Range(-0.1f, 0.1f), Random.Range(-0.25f, -0.75f), Random.Range(-0.5f, 0));
         leap.rotation = Quaternion.Euler(Random.Range(-30f, 30f), 0, 0);

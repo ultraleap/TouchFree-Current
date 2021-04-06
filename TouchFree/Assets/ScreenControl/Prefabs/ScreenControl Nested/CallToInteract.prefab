@@ -51,7 +51,6 @@ MonoBehaviour:
   VideoPlayer: {fileID: 5339068242634914112}
   ShowTimeAfterNoHandPresent: 10
   HideTimeAfterHandPresent: 0.5
-  previousCTIfileName: 
   currentCTIfileName: 
   loadedType: 0
 --- !u!114 &1986433304
@@ -253,6 +252,7 @@ GameObject:
   - component: {fileID: 8538130551986925403}
   - component: {fileID: 8538130551986925402}
   - component: {fileID: 1822044355}
+  - component: {fileID: 8201209357187032491}
   m_Layer: 5
   m_Name: CallToInteractCanvas
   m_TagString: Untagged
@@ -325,6 +325,23 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
 --- !u!114 &1822044355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8538130551986925400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &8201209357187032491
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
