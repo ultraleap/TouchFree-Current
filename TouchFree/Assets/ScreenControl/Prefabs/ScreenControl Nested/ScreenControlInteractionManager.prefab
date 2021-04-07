@@ -527,7 +527,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5911777842215055679}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -780,7 +780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pushInteraction: {fileID: 1103591773542635571}
-  pokeInteraction: {fileID: 5084752646473920823}
+  pokeInteraction: {fileID: 1463014649917980148}
   grabInteraction: {fileID: 8458558753266193409}
   hoverInteraction: {fileID: 5495909130341898480}
 --- !u!1 &5911777843642849153
@@ -932,7 +932,7 @@ MonoBehaviour:
   ignoreDragging: 0
   positioningModule: {fileID: 7253266500062961542}
   allowHover: 0
-  millisecondsCooldownOnEntry: 500
+  millisecondsCooldownOnEntry: 200
   speedMin: 0.1
   speedMax: 0.75
   distAtSpeedMin: 0.05

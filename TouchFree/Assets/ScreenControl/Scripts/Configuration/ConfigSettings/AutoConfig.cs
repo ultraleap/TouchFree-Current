@@ -26,7 +26,6 @@ public class AutoConfig : MonoBehaviour
 
     private void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (bottomPosM == Vector3.zero)
@@ -65,6 +64,8 @@ public class AutoConfig : MonoBehaviour
         PhysicalConfigurable.SetAllValuesToDefault();
         var setup = CalculateConfigurationValues(bottomPos, topPos);
 
+        // Make sure that past this point the selected mount type has been reset as it has been used above
+        ConfigurationSetupController.selectedMountType = MountingType.NONE;
 
         PhysicalConfigurable.UpdateConfig(setup);
         PhysicalConfigurable.SaveConfig();
@@ -83,12 +84,10 @@ public class AutoConfig : MonoBehaviour
         var topEdge = TopCentreFromTouches(bottomPos, topPos);
 
         setup.LeapRotationD = LeapRotationRelativeToScreen(bottomPos, topPos);
-
-        setup.LeapPositionRelativeToScreenBottomM = LeapPositionInScreenSpace(bottomEdge, setup.LeapRotationD); 
+        setup.LeapPositionRelativeToScreenBottomM = LeapPositionInScreenSpace(bottomEdge, setup.LeapRotationD);
 
         return setup;
     }
-
 
     /// <summary>
     /// Find the position of the camera relative to the screen, using the screen position relative to the camera.
@@ -102,7 +101,7 @@ public class AutoConfig : MonoBehaviour
         // We want to calculate the Vector from the bottom of the screen to the Leap in this rotated co-ord system.
 
         Vector3 rotationAngles = leapRotation;
-        if (ConfigurationSetupController.selectedMountType == MountingType.OVERHEAD)
+        if (ConfigurationSetupController.selectedMountType == MountingType.OVERHEAD || ConfigurationSetupController.selectedMountType == MountingType.SCREENTOP)
         {
             // In overhead mode, the stored 'x' angle is inverted so that positive angles always mean
             // the camera is pointed towards the screen. Multiply by -1 here so that it can be used
@@ -146,7 +145,7 @@ public class AutoConfig : MonoBehaviour
         Vector3 directionBottomToTop = topCentre - bottomCentre;
         Vector3 rotation = Vector3.zero;
 
-        if (ConfigurationSetupController.selectedMountType == MountingType.OVERHEAD)
+        if (ConfigurationSetupController.selectedMountType == MountingType.OVERHEAD || ConfigurationSetupController.selectedMountType == MountingType.SCREENTOP)
         {
             rotation.x = -Vector3.SignedAngle(Vector3.up, directionBottomToTop, Vector3.right) + 180;
             rotation.z = 180;
@@ -167,8 +166,6 @@ public class AutoConfig : MonoBehaviour
     /// </summary>
     public float CentreRotationAroundZero(float angle)
     {
-
-
         if(angle > 180) 
         {
             return angle - 360;
@@ -182,7 +179,6 @@ public class AutoConfig : MonoBehaviour
             return angle;
         }
     }
-
 
     void DisplayTrackingLost(bool _display = true)
     {

@@ -19,8 +19,8 @@ public enum ConfigState
 public enum MountingType
 {
     NONE,
-    BOTTOM,
-    TOP_DOWN,
+    DESKTOP,
+    SCREENTOP,
     OVERHEAD
 }
 
@@ -128,6 +128,7 @@ public class ConfigurationSetupController : MonoBehaviour
                 else
                 {
                     ChangeState(ConfigState.WELCOME);
+                    SingleHandManager.Instance.UpdateLeapTrackingMode(); // ensure the leap service is set to the correct mode
                 }
             }
 
@@ -185,33 +186,41 @@ public class ConfigurationSetupController : MonoBehaviour
         if(manualConfigKeyEntered == "SUPPORT")
         {
             Application.OpenURL("http://rebrand.ly/ul-contact-us");
-            //closeConfig = true;
         }
 
         if (manualConfigKeyEntered == "SETUPGUIDE")
         {
             Application.OpenURL("http://rebrand.ly/ul-camera-setup");
-            //closeConfig = true;
         }
     }
 
     void RunLeapMount()
     {
-        if (manualConfigKeyEntered == "T")
+        if (manualConfigKeyEntered == "SCREENTOP")
         {
-            selectedMountType = MountingType.OVERHEAD;
+            // To help with Auto and manual, we set the tracking mode here. This way the user is in the correct mode for running a Setup
+            selectedMountType = MountingType.SCREENTOP;
+            SingleHandManager.Instance.SetLeapTrackingMode(selectedMountType);
             ChangeState(ConfigState.AUTO_OR_MANUAL);
         }
-        else if (manualConfigKeyEntered == "B")
+        else if (manualConfigKeyEntered == "BOTTOM")
         {
-            selectedMountType = MountingType.BOTTOM;
+            // To help with Auto and manual, we set the tracking mode here. This way the user is in the correct mode for running a Setup
+            selectedMountType = MountingType.DESKTOP;
+            SingleHandManager.Instance.SetLeapTrackingMode(selectedMountType);
+            ChangeState(ConfigState.AUTO_OR_MANUAL);
+        }
+        else if (manualConfigKeyEntered == "OVERHEAD")
+        {
+            // To help with Auto and manual, we set the tracking mode here. This way the user is in the correct mode for running a Setup
+            selectedMountType = MountingType.OVERHEAD;
+            SingleHandManager.Instance.SetLeapTrackingMode(selectedMountType);
             ChangeState(ConfigState.AUTO_OR_MANUAL);
         }
 
         if (manualConfigKeyEntered == "SETUPGUIDE")
         {
             Application.OpenURL("http://rebrand.ly/ul-camera-setup");
-            //closeConfig = true;
         }
     }
 
@@ -233,22 +242,22 @@ public class ConfigurationSetupController : MonoBehaviour
         }
         else if (manualConfigKeyEntered == "M")
         {
-            // immediately use the selecte dmount type for manual setup
+            // immediately use the selected mount type for manual setup
             var setup = PhysicalConfigurable.Config;
             bool wasBottomMounted = Mathf.Approximately(0, setup.LeapRotationD.z);
 
-            if(wasBottomMounted && selectedMountType == MountingType.OVERHEAD)
+            if(wasBottomMounted && selectedMountType == MountingType.OVERHEAD || selectedMountType == MountingType.SCREENTOP)
             {
                 setup.LeapRotationD = new Vector3(-setup.LeapRotationD.x, setup.LeapRotationD.y, 180f);
                 PhysicalConfigurable.UpdateConfig(setup);
             }
-            else if(!wasBottomMounted && selectedMountType == MountingType.BOTTOM)
+            else if(!wasBottomMounted && selectedMountType == MountingType.DESKTOP)
             {
                 setup.LeapRotationD = new Vector3(-setup.LeapRotationD.x, setup.LeapRotationD.y, 0f);
                 PhysicalConfigurable.UpdateConfig(setup);
             }
 
-            // dont alloe manual to flip the axes again
+            // dont allow manual to flip the axes again
             selectedMountType = MountingType.NONE;
             ChangeState(ConfigState.MANUAL);
         }
@@ -288,7 +297,6 @@ public class ConfigurationSetupController : MonoBehaviour
         if (manualConfigKeyEntered == "DESIGNGUIDE")
         {
             Application.OpenURL("http://rebrand.ly/ul-design-guidelines");
-            //closeConfig = true;
         }        
     }
 
@@ -299,13 +307,11 @@ public class ConfigurationSetupController : MonoBehaviour
         if (manualConfigKeyEntered == "SUPPORT")
         {
             Application.OpenURL("http://rebrand.ly/ul-contact-us");
-            //closeConfig = true;
         }
 
         if (manualConfigKeyEntered == "SETUPGUIDE")
         {
             Application.OpenURL("http://rebrand.ly/ul-touchfree-setup");
-            //closeConfig = true;
         }
     }
 
