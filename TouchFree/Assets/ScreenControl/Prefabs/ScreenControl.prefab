@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 922183958}
   - component: {fileID: 5670778368407411115}
   m_Layer: 0
-  m_Name: Reach
+  m_Name: ScreenControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,8 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482b813fc1f04e648a2629e41a0d5504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reachGameobjects:
-  - {fileID: 7619753389815410750}
+  screenControlGameobjects: []
 --- !u!114 &5670778368407411115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,7 +208,7 @@ PrefabInstance:
     - target: {fileID: 5911777842215055679, guid: e08a0f516f973834ea585fb53fdd54f9,
         type: 3}
       propertyPath: m_Name
-      value: ReachInteractionManager
+      value: InteractionManager
       objectReference: {fileID: 0}
     - target: {fileID: 5911777842215055681, guid: e08a0f516f973834ea585fb53fdd54f9,
         type: 3}
