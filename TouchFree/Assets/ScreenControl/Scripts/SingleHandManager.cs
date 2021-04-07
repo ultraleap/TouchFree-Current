@@ -49,7 +49,7 @@ public class SingleHandManager : MonoBehaviour
             Version version = new Version();
             Version.TryParse(myFileVersionInfo.FileVersion, out version);
 
-            // Virsion screentop is introduced
+            // Version screentop is introduced
             Version screenTopVersionMin = new Version(4, 9, 2);
 
             if (version != null)
@@ -134,7 +134,6 @@ public class SingleHandManager : MonoBehaviour
             case MountingType.OVERHEAD:
                 ((LeapServiceProvider)Hands.Provider).GetLeapController().SetPolicy(Controller.PolicyFlag.POLICY_OPTIMIZE_HMD);
                 ((LeapServiceProvider)Hands.Provider).GetLeapController().ClearPolicy(Controller.PolicyFlag.POLICY_OPTIMIZE_SCREENTOP);
-
                 break;
         }
     }
@@ -147,8 +146,10 @@ public class SingleHandManager : MonoBehaviour
         Hand left = null;
         Hand right = null;
 
-       if (useTrackingTransform)
+        if (useTrackingTransform)
+        {
             Hands.Provider.CurrentFrame.Transform(TrackingTransform);
+        }
 
         foreach (var hand in Hands.Provider.CurrentFrame.Hands)
         {

@@ -864,10 +864,10 @@ namespace LeapInternal {
 
     private eLeapRS _lastResult; //Used to avoid repeating the same log message, ie. for events like time out
     private void reportAbnormalResults(string context, eLeapRS result) {
-            if (result != eLeapRS.eLeapRS_Success &&
+      if (result != eLeapRS.eLeapRS_Success &&
          result != _lastResult) {
         string msg = context + " " + result;
-                if (LeapLogEvent != null) {
+        if (LeapLogEvent != null) {
           LeapLogEvent.DispatchOnContext(this, EventContext,
             new LogEventArgs(MessageSeverity.MESSAGE_CRITICAL,
                 LeapC.GetNow(),
