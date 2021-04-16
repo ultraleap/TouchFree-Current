@@ -12,24 +12,30 @@ public class WindowsInputController : InputController
         switch (_type)
         {
             case InputType.DOWN:
-                TouchInjector.MoveTo((int)_cursorPosition.x, GlobalSettings.ScreenHeight - (int)_cursorPosition.y);
-                TouchInjector.TouchDown();
+                //TouchInjector.MoveTo((int)_cursorPosition.x, GlobalSettings.ScreenHeight - (int)_cursorPosition.y);
+                //TouchInjector.TouchDown();
+                MouseOperations.SetCursorPosition((int)_cursorPosition.x, GlobalSettings.ScreenHeight - (int)_cursorPosition.y);
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
                 break;
             case InputType.HOLD:
             case InputType.DRAG:
-                TouchInjector.MoveTo((int)_cursorPosition.x, GlobalSettings.ScreenHeight - (int)_cursorPosition.y);
-                TouchInjector.TouchHold();
+                //TouchInjector.MoveTo((int)_cursorPosition.x, GlobalSettings.ScreenHeight - (int)_cursorPosition.y);
+                //TouchInjector.TouchHold();
+                MouseOperations.SetCursorPosition((int)_cursorPosition.x, GlobalSettings.ScreenHeight - (int)_cursorPosition.y);
                 break;
             case InputType.UP:
-                TouchInjector.MoveTo((int)_cursorPosition.x, GlobalSettings.ScreenHeight - (int)_cursorPosition.y);
-                TouchInjector.TouchUp();
+                //TouchInjector.MoveTo((int)_cursorPosition.x, GlobalSettings.ScreenHeight - (int)_cursorPosition.y);
+                //TouchInjector.TouchUp();
+                MouseOperations.SetCursorPosition((int)_cursorPosition.x, GlobalSettings.ScreenHeight - (int)_cursorPosition.y);
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
                 break;
             case InputType.HOVER:
-                TouchInjector.MoveTo((int)_cursorPosition.x, GlobalSettings.ScreenHeight - (int)_cursorPosition.y);
-                TouchInjector.TouchHover();
+                //TouchInjector.MoveTo((int)_cursorPosition.x, GlobalSettings.ScreenHeight - (int)_cursorPosition.y);
+                //TouchInjector.TouchHover();
+                MouseOperations.SetCursorPosition((int)_cursorPosition.x, GlobalSettings.ScreenHeight - (int)_cursorPosition.y);
                 break;
             case InputType.CANCEL:
-                TouchInjector.TouchCancel();
+                //TouchInjector.TouchCancel();
                 break;
         }
     }
