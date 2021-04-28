@@ -55,14 +55,22 @@ TouchFree::build:
 
 TouchFree::package:
   stage: package
-  dependencies: TouchFree::build
+  dependencies:
+    - TouchFree::build
   needs: [ "TouchFree::build" ]
   script:
     # Acquire package from SC repo using TARGET_SC_BRANCH
     # unzip it
     # Copy TouchFree Build alongside all the SC Stuff
-    # run innosetup
-    # sign the installer
+
+    # Run innosetup
+    - cd ./Scripts/
+    - "& ./compile_installer.bat $CI_PROJECT_DIR/ScreenControl_Service_Utilities/Installer/SC_Service_Installer.iss"
+
+    # Sign the installer with the UltraLeap certificate
+    - $cert=Get-ChildItem -Path Cert:\LocalMachine\My -CodeSigningCert
+    - ls $CI_PROJECT_DIR/Build
+    - Set-AuthenticodeSignature -FilePath "$CI_PROJECT_DIR/Installer_Build/ScreenControl_Service_1.0.0_${SC_SRV_VERSION}_Installer.exe" -TimestampServer 'http://timestamp.comodoca.com/authenticode' -Certificate $cert
   artifacts:
     name: "TouchFree_${TOUCHFREE_VERSION}_${CI_COMMIT_SHORT_SHA}"
     paths:
