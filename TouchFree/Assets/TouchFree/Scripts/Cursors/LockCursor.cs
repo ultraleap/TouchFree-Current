@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Ultraleap.ScreenControl.Client;
 
 public class LockCursor : MonoBehaviour
 {
@@ -9,29 +8,30 @@ public class LockCursor : MonoBehaviour
     
     public TransparentWindow window;
 
-    private TouchFreeCursor _cursor;
-    private Vector2 _position;
+    private TouchFreeRingCursor cursor;
+    private Vector2 screenMiddle;
 
     void Start()
     {
-        _position = new Vector2(GlobalSettings.CursorWindowSize / 2, GlobalSettings.CursorWindowSize / 2);
+        screenMiddle = new Vector2(TouchFreeMain.CursorWindowSize / 2, TouchFreeMain.CursorWindowSize / 2);
     }
 
     void LateUpdate()
     {
-        if (_cursor == null)
+        if (cursor == null)
         {
-            _cursor = cursorCanvas.GetComponentInChildren<TouchFreeCursor>();
+            cursor = cursorCanvas.GetComponentInChildren<TouchFreeRingCursor>();
         }
 
         if (window.clickThroughEnabled)
         {
-            _cursor.OverridePosition(true, _position);
-            window.SetPosition(_cursor.TargetPosition());
+            cursor.overriding = true;
+            cursor.OverridePosition(screenMiddle);
+            window.SetPosition(cursor.GetWindowPos());
         }
         else
         {
-            _cursor.OverridePosition(false, Vector3.zero);
+            cursor.overriding = false;
         }
     }
 }
