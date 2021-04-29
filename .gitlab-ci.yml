@@ -30,7 +30,7 @@ TouchFree::build:
     - echo "$UNITY_EXE"
 
     # Update Version.txt with latest information before packaging
-    - python ./Scripts/UpdateVersionFile.py --path ${env:UNITY_PROJECT_PATH}/Assets/TouchFree/Version.txt --swVer ${env:TOUCHFREE_VERSION} --ref ${env:CI_COMMIT_SHORT_SHA}
+    - python ./Scripts/UpdateVersionFile.py --path ${env:UNITY_PROJECT_PATH}/Assets/TouchFree/Version.txt --apiVer ${env:SC_API_VERSION} --swVer ${env:TOUCHFREE_VERSION} --ref ${env:CI_COMMIT_SHORT_SHA}
 
     # Copy Version.txt to Client_Release folder
     - if (Test-Path -Path "./TouchFree_Build") {
