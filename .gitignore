@@ -22,6 +22,7 @@ ExportedObj/
 *.booproj
 .vs/
 .vscode/
+**/.vsconfig
 
 # ================#
 # JetBrains Rider #
